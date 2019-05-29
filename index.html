@@ -8,9 +8,58 @@
     <!-- Reach Libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.0.0/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.0.0/umd/react-dom.development.js"></script>
+
+    <script src='flashcards.js'></script>
+
     <link rel="stylesheet" type="text/css" href="index.css"/>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <div id="app"></div>
+    <script type='text/babel'>
+    var cardData = {
+        front: {
+            question: 'You may know that Reach was created at _________ :',
+            hint: 'This company\'s site is known for being written in PHP.'
+        }
+    };
+
+    class App extends React.Component {
+        render () {
+            return (
+                <div className="App">
+                    <h1 className='title'>
+                        Flashback
+                    </h1>
+                    <p className="sub-title">
+                        An interactive flashcard app.
+                    </p>
+                    <div className="card-list">
+                        <Card front={cardData.front}/>
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    class Card extends React.Component {
+        render () {
+            return (
+                <div className="Card -front">
+                    <div className="front">
+                        <h3 className="question">
+                            {this.props.front.question}
+                        </h3>
+                        <p className="hint">
+                            <span>Hint:</span>
+                            {this.props.front.hint}
+                        </p>
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    ReactDOM.render(<App />, document.getElementById('app'));
+</script>
 </body>
 </html>
