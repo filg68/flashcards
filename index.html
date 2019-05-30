@@ -73,6 +73,13 @@
             this.state = { flipped: false };
         }
 
+        componentDidUpdate (previousProps, previousState) {
+            if (previousState.flipped === true) {
+                this.setState({ flipped: false });
+            }
+
+        }
+
         flipCard = () => {
             if (this.props.index === 0 ) {
                 this.setState({flipped: !this.state.flipped});
